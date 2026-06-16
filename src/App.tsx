@@ -10,6 +10,7 @@ import { Contact } from "./components/sections/Contact";
 import { ScrollReveal } from "./components/ui/ScrollReveal";
 import { CustomCursor } from "./components/ui/CustomCursor";
 import { SectionDivider } from "./components/ui/SectionDivider";
+import { Background3D } from "./components/ui/Background3D";
 
 function App() {
   const [hasFinePointer, setHasFinePointer] = useState(false);
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <>
+      <Background3D />
       {hasFinePointer && <CustomCursor />}
       <Navbar />
       <Hero />

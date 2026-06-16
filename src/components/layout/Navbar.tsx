@@ -28,12 +28,6 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="#contact"
-            className="text-body-sm font-medium text-ash transition-colors hover:text-bone"
-          >
-            Log in
-          </a>
           <Button variant="filled" size="sm">
             Contact
           </Button>
