@@ -15,6 +15,7 @@ dist-ssr
 
 # Agent files — AI configuration & skills
 .agents/
+skills-lock.json
 
 # Editor directories and files
 .vscode/*
