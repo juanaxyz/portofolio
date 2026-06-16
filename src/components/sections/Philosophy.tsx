@@ -29,9 +29,9 @@ export function Philosophy() {
         <SectionEyebrow label="PHILOSOPHY" />
 
         <h2 className="mb-12 text-heading-lg font-medium leading-tight tracking-[-0.84px] text-bone">
-          Aku bukan tipe yang tunggu
+          Aku belajar dengan doing,
           <br />
-          ngerti dulu baru mulai.
+          bukan dengan reading.
         </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

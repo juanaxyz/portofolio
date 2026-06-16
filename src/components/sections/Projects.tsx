@@ -22,7 +22,7 @@ export function Projects() {
         <SectionEyebrow label="PROJECTS" />
 
         <h2 className="mb-8 text-heading-lg font-medium leading-tight tracking-[-0.84px] text-bone">
-          Hal-hal yang pernah dibuat
+          Tools & experiments yang berhasil
         </h2>
 
         <div className="mb-8 flex flex-wrap gap-2">
@@ -69,7 +69,7 @@ export function Projects() {
                     {project.tagline}
                   </p>
 
-                  <p className="mb-4 font-jetbrains-mono text-caption text-ash">
+                  <p className="mb-4 font-jetbrains-mono text-body-sm text-ash">
                     {project.stack.join(" · ")}
                   </p>
 

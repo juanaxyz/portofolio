@@ -4,7 +4,7 @@ export const owner = {
   role: "Tech Explorer",
   tagline: "Curious by nature. Builder by habit.",
   description:
-    "Dari scraping ribuan data, ngerakit sensor IoT, sampai bikin web app buat ibu kos — aku explore dulu, baru ngerti.",
+    "Bikin tools yang dipakai orang beneran. Dari web app sampai sensor IoT — semua dari nol.",
   university: "Teknik Informatika, Universitas Udayana",
   year: 2024,
   location: "Bali, Indonesia",

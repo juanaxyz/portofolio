@@ -22,13 +22,13 @@ const contacts = [
   {
     icon: GitHubIcon,
     label: "GitHub",
-    caption: "Lihat semua kode",
+    caption: "Lihat 8+ project & kode lengkap",
     href: owner.github,
   },
   {
     icon: LinkedInIcon,
     label: "LinkedIn",
-    caption: "Background lengkap",
+    caption: "2 tahun shipping & learning",
     href: owner.linkedin,
   },
   {
@@ -72,7 +72,7 @@ export function Contact() {
                 <Icon className="h-6 w-6 shrink-0 text-soft-indigo" strokeWidth={1.5} />
                 <div className="flex-1 text-left">
                   <p className="text-body font-medium text-bone">{contact.label}</p>
-                  <p className="text-body-sm text-ash">{contact.caption}</p>
+                  <p className="text-body-sm font-medium text-ash group-hover:text-soft-indigo/80">{contact.caption}</p>
                 </div>
                 <span className="text-body-sm text-ash transition-colors group-hover:text-soft-indigo">
                   &rarr;
