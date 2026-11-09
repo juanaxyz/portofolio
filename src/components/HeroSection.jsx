@@ -121,7 +121,7 @@ const titleVariants = {
         </div>
 
         <motion.div
-          className="order-first lg:order-none w-full max-w-[380px] sm:max-w-none sm:w-95 lg:w-[440px] xl:w-[480px] h-[420px] sm:h-[480px] lg:h-[540px] xl:h-[580px] relative shrink-0 flex items-center justify-center bg-neutral-100 rounded-2xl overflow-hidden shadow-sm"
+          className="w-[320px] sm:w-95 lg:w-110 xl:w-120 h-105 sm:h-120 lg:h-[540px] xl:h-[580px] relative shrink-0 flex items-center justify-center bg-neutral-100 rounded-2xl overflow-hidden shadow-sm"
           variants={greetingVariants}
           whileHover={shouldReduceMotion ? {} : { scale: 1.015 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
