@@ -6,6 +6,9 @@
 import threadsImage from '../assets/images/threads.png'
 import sentimentImage from '../assets/images/sentiment-shopee.png'
 import umahKawanImage from '../assets/images/umahkawan.png'
+import umahkawandetail from '../assets/images/umahkawan_cart.png'
+import sistemInformasiPenyakitImage from '../assets/images/sistem-informasi-penyakit.png'
+import sistemInformasiPenyakitDetail from '../assets/images/sistem-informasi-penyakit-result.png'
 import {
   siBootstrap,
   siCss,
@@ -95,6 +98,7 @@ const PROJECTS_COLLECTION = [
     tech: 'PHP / HTML / CSS / JavaScript / jQuery / Bootstrap / MySQL',
     link: 'https://github.com/GeraldHizkia/UmahKawan-TA-PROGNET',
     image: umahKawanImage,
+    resultImage: umahkawandetail,
     tagline: 'Authentic Balinese Food Ordering',
     caseStudy: {
       problem:
@@ -188,7 +192,8 @@ const PROJECTS_COLLECTION = [
       'PostgreSQL' : siPostgresql,
     },
     link: 'https://github.com/juanaxyz/Sistem-Informasi-Penyakit',
-    image: null,
+    image: sistemInformasiPenyakitImage,
+    resultImage : sistemInformasiPenyakitDetail,
     tagline: 'chatbot, AI-assisted X-ray analysis, and interactive body map',
     caseStudy: {
       problem:

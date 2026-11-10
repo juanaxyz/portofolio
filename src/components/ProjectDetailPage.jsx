@@ -65,7 +65,7 @@ export default function ProjectDetailPage({ project }) {
       title: 'The Result',
       caption: 'What was the outcome?',
       body: caseStudy.result,
-      image: project.image,
+      image: project.resultImage ?? project.image,
     },
     {
       number: '04',
@@ -293,19 +293,19 @@ export default function ProjectDetailPage({ project }) {
                     </div>
                   ) : (
                     <div>
-                      {section.body && (
-                        <p className="m-0 max-w-140 text-lg leading-7.5 text-neutral-700">
-                          {section.body}
-                        </p>
-                      )}
                       {section.image !== undefined && (
-                        <div className="mt-8 aspect-422/253 w-full max-w-105.5 overflow-hidden bg-neutral-200 lg:ml-46.75">
+                        <div className="my-8 aspect-422/253 w-full overflow-hidden bg-neutral-200">
                           <ProjectImage
                             src={section.image}
-                            alt={`${project.title} result`}
-                            iconClassName="h-12 w-12 opacity-20"
+                            alt={`${project.title} result preview`}
+                            // iconClassName="w-full h-full"
                           />
                         </div>
+                      )}
+                      {section.body && (
+                        <p className="m-0 w-full text-lg leading-7.5 text-neutral-700">
+                          {section.body}
+                        </p>
                       )}
                     </div>
                   )}
