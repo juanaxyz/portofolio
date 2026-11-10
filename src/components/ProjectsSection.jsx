@@ -1,5 +1,6 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import CardStack3D from './CardStack3D'
+import { projectService } from '../services/projectService'
 
 function ProjectDetails({ project }) {
   return (
@@ -16,7 +17,9 @@ function ProjectDetails({ project }) {
         <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
         <span className="text-sm font-semibold text-neutral-900">{project.year}</span>
         <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
-        <span className="text-sm font-semibold text-neutral-900">{project.tech}</span>
+        <span className="text-sm font-semibold text-neutral-900">
+          {projectService.getTechStack(project).map(({ name }) => name).join(' / ')}
+        </span>
       </div>
 
       <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -26,7 +29,7 @@ function ProjectDetails({ project }) {
           rel="noreferrer"
           className="inline-flex items-center justify-center w-40 sm:w-44 h-12 bg-neutral-900 hover:bg-neutral-800 text-white rounded font-semibold text-sm transition-transform duration-200 hover:-translate-y-0.5"
         >
-          View Project
+          View GitHub
         </a>
         <a
           href={`#/project/${project.id}`}

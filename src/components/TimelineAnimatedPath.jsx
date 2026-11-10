@@ -1,5 +1,6 @@
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
+import SVGPathAnimation from './SVGPathAnimation'
 
 export default function TimelineAnimatedPath({ entries }) {
   const listRef = useRef(null)
@@ -13,19 +14,15 @@ export default function TimelineAnimatedPath({ entries }) {
       aria-label="Education and experience timeline"
       className="relative list-none m-0 p-0 pl-6 sm:pl-7"
     >
-      <motion.span
-        aria-hidden="true"
-        className="absolute left-1 top-1.5 bottom-1.5 w-px origin-top bg-neutral-200 sm:left-1.5"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: isComplete ? 1 : 0 }}
-        transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : { duration: 1.6, delay: 0.2, ease: [0.45, 0, 0.55, 1] }
-        }
-      >
-        <span className="absolute inset-0 bg-neutral-900" />
-      </motion.span>
+      <span className="absolute left-1 top-1.5 bottom-1.5 w-px sm:left-1.5">
+        <SVGPathAnimation
+          svgPath="M1 0 V100"
+          trigger="inView"
+          playback="once"
+          duration={shouldReduceMotion ? 0 : 1.6}
+          strokeWidth={1}
+        />
+      </span>
 
       {entries.map((entry, index) => {
         const isLast = index === entries.length - 1

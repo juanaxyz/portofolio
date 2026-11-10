@@ -35,3 +35,11 @@
   animation: marquee 65s linear infinite;
   will-change: transform;
 }
+
+.tech-stack-scroll {
+  scrollbar-width: none;
+}
+
+.tech-stack-scroll::-webkit-scrollbar {
+  display: none;
+}

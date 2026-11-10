@@ -1,4 +1,5 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { projectService } from '../services/projectService'
 
 export default function CardStack3D({
   items,
@@ -68,7 +69,7 @@ export default function CardStack3D({
                   {/* Card Header Content */}
                   <div className="relative z-10 p-6 flex justify-between items-center">
                     <span className="text-sm font-semibold text-white px-3 py-1 rounded-full bg-neutral-800">
-                      {item.tech}
+                      {projectService.getTechStack(item).map(({ name }) => name).join(' / ')}
                     </span>
                     <span className="text-sm font-medium text-neutral-300">
                       {item.year}

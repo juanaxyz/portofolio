@@ -49,7 +49,7 @@ export const portfolioService = {
         {
           period: '2021 - 2024',
           title: 'SMAN 1 Tampaksiring',
-          desc: 'Science (IPA). Built the foundation for my curiosity in technology and problem solving.',
+          desc: 'Science (IPA).',
         },
         {
           period: '2024 - Present',
@@ -69,7 +69,7 @@ export const portfolioService = {
         {
           period: '2026 - 2027',
           title: 'ASAH by DICODING LED by GOTO',
-          desc: 'Participating in Dicoding × GoTo’s ASAH AI Engineer program, focusing on Python, machine learning, deep learning, generative AI, and NLP through structured learning and hands-on sentiment analysis experiments.',
+          desc: 'Participating in Dicoding × GoTo’s ASAH AI Engineer program, focusing on Python, machine learning, deep learning, generative AI, and NLP through structured learning and hands-on experiments.',
         },
       ],
     }

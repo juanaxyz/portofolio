@@ -1,8 +1,9 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import backArrow from '../assets/figma/back-arrow.svg'
-import techIcon from '../assets/figma/tech-icon.png'
 import { projectService } from '../services/projectService'
+import SVGPathAnimation from './SVGPathAnimation'
+
 
 function ProjectImage({ src, alt }) {
   if (!src) {
@@ -17,6 +18,7 @@ export default function ProjectDetailPage({ project }) {
   const caseStudy = project.caseStudy ?? {}
   const approach = caseStudy.approach ?? {}
   const techStack = projectService.getTechStack(project)
+  const techStackRef = useRef(null)
 
   useEffect(() => {
     const previousTitle = document.title
@@ -36,6 +38,13 @@ export default function ProjectDetailPage({ project }) {
       ease: [0.16, 1, 0.3, 1],
     },
   })
+
+  const scrollTechStack = (direction) => {
+    techStackRef.current?.scrollBy({
+      left: direction * 180,
+      behavior: 'smooth',
+    })
+  }
 
   const sections = [
     {
@@ -73,8 +82,8 @@ export default function ProjectDetailPage({ project }) {
   ]
 
   return (
-    <main className="w-full min-h-[100svh] bg-white">
-      <div className="mx-auto w-full max-w-[1192px] px-6 pt-10 pb-20 sm:px-10 lg:px-0 lg:pt-[55px] lg:pb-28">
+    <main className="w-full min-h-svh bg-white">
+      <div className="mx-auto w-full max-w-298 px-6 pt-10 pb-20 sm:px-10 lg:px-0 lg:pt-13.75 lg:pb-28">
         <a
           href="#projects"
           className="group inline-flex items-center gap-1.5 text-sm font-semibold text-neutral-900 no-underline"
@@ -96,75 +105,141 @@ export default function ProjectDetailPage({ project }) {
           transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="min-w-0">
-            <h1 className="m-0 text-[36px] font-semibold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900 sm:text-[42px] lg:text-[48px] lg:leading-[60px]">
+            <h1 className="m-0 text-[36px] font-semibold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900 sm:text-[42px] lg:text-[48px] lg:leading-15">
               {project.title}
             </h1>
-            <p className="mt-4 mb-0 max-w-[541px] text-base leading-[26px] text-neutral-700">
+            <p className="mt-4 mb-0 max-w-135.25 text-base leading-6.5 text-neutral-700">
               {project.description}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-5">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-[38px] w-[145px] items-center justify-center rounded bg-neutral-900 px-4 text-sm font-semibold text-white no-underline transition-colors duration-200 hover:bg-neutral-800"
-              >
+              
+              {project.live_view && (
+                <a
+                  href={project.live_view}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-9.5 w-36.25 items-center justify-center rounded bg-neutral-900 px-4 text-sm font-semibold text-white no-underline transition-colors duration-200 hover:bg-neutral-800"
+                >
                 Live View
               </a>
+              )}
               <a
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-[38px] w-[145px] items-center justify-center rounded border border-neutral-500 bg-white px-4 text-sm font-semibold text-neutral-900 no-underline transition-colors duration-200 hover:bg-neutral-100"
+                className="inline-flex h-9.5 w-36.25 items-center justify-center rounded border border-neutral-500 bg-white px-4 text-sm font-semibold text-neutral-900 no-underline transition-colors duration-200 hover:bg-neutral-100"
               >
                 Github
               </a>
             </div>
           </div>
 
-          <div className="w-full lg:-mt-5 lg:w-[596px]">
-            <div className="aspect-[596/418] w-full overflow-hidden rounded-[18px] bg-neutral-100 lg:h-[418px]">
+          <div className="w-full lg:-mt-5 lg:w-149">
+            <div className="aspect-596/418 w-full overflow-hidden rounded-[18px] bg-neutral-100 lg:h-104.5">
               <ProjectImage src={project.image} alt={`${project.title} preview`} />
             </div>
           </div>
         </motion.div>
 
         {/* Tech stack band */}
-        <div className="mt-12 border-y-2 border-neutral-900 lg:mt-[51px]">
-          <div className="flex flex-col gap-6 py-7 lg:min-h-[166px] lg:flex-row lg:items-center lg:gap-0 lg:py-0">
-            <p className="m-0 shrink-0 text-lg leading-[30px] text-neutral-900">Tech Stack</p>
-            <div aria-hidden="true" className="hidden h-[60px] w-px bg-neutral-900 lg:ml-10 lg:block" />
+        <div className="mt-12 lg:mt-12.75">
+          <SVGPathAnimation
+            svgPath="M0 1 H100"
+            viewBox="0 0 100 2"
+            className="h-0.5 w-full"
+            strokeWidth={0.5}
+            bgColor="#E5E7EB"
+            animColor="#111827"
+            trigger="inView"
+            playback="once"
+            duration={1.6}
+            lineCap="round"
+          />
+
+          <motion.div 
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            delay: 0.5,
+            ease : 'ease-in-out',
+           }}
+          
+          className="flex flex-col gap-6 py-7 lg:min-h-41.5 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
+            <p className="m-0 shrink-0 text-lg leading-7.5 text-neutral-900">Tech Stack</p>
+            <div aria-hidden="true" className="hidden h-15 w-px bg-neutral-900 lg:ml-10 lg:block" />
             <div
-              className={`flex flex-wrap items-center gap-x-8 gap-y-5 lg:pl-[103px] ${
-                techStack.length > 4 ? 'lg:gap-x-12' : 'lg:gap-x-[93px]'
-              }`}
+              ref={techStackRef}
+              className="tech-stack-scroll min-w-0 overflow-x-auto lg:pl-25.75"
+              tabIndex="0"
+              aria-label="Technology stack"
             >
-              {techStack.map((tech, index) => (
-                <Fragment key={`${tech}-${index}`}>
-                  {index > 0 && (
-                    <span
-                      aria-hidden="true"
-                      className="hidden h-[22px] w-px shrink-0 bg-neutral-900 lg:block"
-                    />
-                  )}
-                  <div className="flex shrink-0 items-center gap-3">
-                    <img
-                      src={techIcon}
-                      alt=""
-                      aria-hidden="true"
-                      className="h-[34px] w-[34px] object-contain lg:h-[42px] lg:w-[42px]"
-                    />
-                    <span className="text-xs text-neutral-900">{tech}</span>
-                  </div>
-                </Fragment>
-              ))}
+              <div
+                className={`flex min-w-max items-center gap-x-8 gap-y-5 pr-6 py-3 lg:py-4 ${
+                  techStack.length > 4 ? 'lg:gap-x-12' : 'lg:gap-x-23.25'
+                }`}
+              >
+                {techStack.map((tech, index) => (
+                  <Fragment key={`${tech.name}-${index}`}>
+                    {index > 0 && (
+                      <span
+                        aria-hidden="true"
+                        className="hidden h-5.5 w-px shrink-0 bg-neutral-900 lg:block"
+                      />
+                    )}
+                    <div className="flex shrink-0 items-center gap-3">
+                      {tech.icon ? (
+                        <svg
+                          viewBox="0 0 24 24"
+                          role="img"
+                          aria-label={`${tech.name} icon`}
+                          className="h-8.5 w-8.5 fill-current text-neutral-900 lg:h-10.5 lg:w-10.5"
+                        >
+                          <path d={tech.icon.path} />
+                        </svg>
+                      ) : null}
+                      <span className="text-xs text-neutral-900">{tech.name}</span>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
             </div>
-          </div>
+            <div className="flex shrink-0 items-center gap-2">
+              <button
+                type="button"
+                onClick={() => scrollTechStack(-1)}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+                aria-label="Scroll technology stack left"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollTechStack(1)}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+                aria-label="Scroll technology stack right"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </motion.div>
+
+          <SVGPathAnimation
+            svgPath="M100 0 H0"
+            viewBox="0 0 100 2"
+            className="h-0.5 w-full"
+            strokeWidth={0.5}
+            bgColor="#E5E7EB"
+            animColor="#111827"
+            trigger="inView"
+            playback="once"
+            duration={1.6}
+            lineCap="round"
+          />
         </div>
 
         {/* Case study sections */}
-        <div className="mt-12 lg:mt-[51px]">
+        <div className="mt-12 lg:mt-12.75">
           {sections.map((section, index) => (
             <motion.section
               key={section.number}
@@ -172,28 +247,28 @@ export default function ProjectDetailPage({ project }) {
               {...reveal(0.05)}
             >
               <div
-                className={`grid grid-cols-1 gap-8 py-10 lg:grid-cols-[373px_1fr] lg:gap-0 lg:pb-[52px] ${
-                  index === 0 ? 'lg:pt-0' : 'lg:pt-[52px]'
+                className={`grid grid-cols-1 gap-8 py-10 md:grid-cols-[minmax(220px,0.78fr)_minmax(0,1.22fr)] md:gap-0 md:pb-13 ${
+                  index === 0 ? 'lg:pt-0' : 'lg:pt-13'
                 }`}
               >
-                <div className="min-w-0 lg:min-h-[327px]">
-                  <p className="m-0 text-[32px] font-semibold leading-[44px] tracking-[-0.015em] text-neutral-900">
+                <div className="min-w-0 md:min-h-81.75">
+                  <p className="m-0 text-[32px] font-semibold leading-11 tracking-[-0.015em] text-neutral-900">
                     {section.number}
                   </p>
-                  <h2 className="mt-1 mb-0 text-[36px] font-semibold leading-[1.25] tracking-[-0.02em] text-neutral-900 sm:text-[42px] lg:text-[48px] lg:leading-[60px]">
+                  <h2 className="mt-1 mb-0 text-[36px] font-semibold leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[42px] lg:text-[48px] lg:leading-15">
                     {section.title}
                   </h2>
-                  <div aria-hidden="true" className="mt-5 h-px w-[116px] bg-neutral-900" />
-                  <p className="mt-5 mb-0 max-w-[370px] text-lg leading-[30px] text-neutral-700">
+                  <div aria-hidden="true" className="mt-5 h-px w-29 bg-neutral-900" />
+                  <p className="mt-5 mb-0 max-w-92.5 text-lg leading-7.5 text-neutral-700">
                     {section.caption}
                   </p>
                 </div>
 
-                <div className="min-w-0 lg:border-l lg:border-neutral-200 lg:pl-9 lg:pt-[148px]">
+                <div className="min-w-0 md:flex md:min-h-81.75 md:items-center md:border-l md:border-neutral-200 md:pl-9">
                   {section.steps ? (
                     <div>
                       {section.summary && (
-                        <p className="m-0 mb-8 max-w-[620px] text-lg leading-[30px] text-neutral-700">
+                        <p className="m-0 mb-8 max-w-155 text-lg leading-7.5 text-neutral-700">
                           {section.summary}
                         </p>
                       )}
@@ -206,10 +281,10 @@ export default function ProjectDetailPage({ project }) {
                             <p className="m-0 text-sm font-semibold leading-5 text-neutral-900">
                               {String(stepIndex + 1).padStart(2, '0')}
                             </p>
-                            <p className="mt-0 mb-0 text-xl font-semibold leading-[30px] tracking-[-0.005em] text-neutral-900">
+                            <p className="mt-0 mb-0 text-xl font-semibold leading-7.5 tracking-[-0.005em] text-neutral-900">
                               {step.title}
                             </p>
-                            <p className="mt-2 mb-0 max-w-[147px] text-xs leading-[18px] text-neutral-600">
+                            <p className="mt-2 mb-0 max-w-36.75 text-xs leading-4.5 text-neutral-600">
                               {step.description}
                             </p>
                           </div>
@@ -219,12 +294,12 @@ export default function ProjectDetailPage({ project }) {
                   ) : (
                     <div>
                       {section.body && (
-                        <p className="m-0 max-w-[560px] text-lg leading-[30px] text-neutral-700">
+                        <p className="m-0 max-w-140 text-lg leading-7.5 text-neutral-700">
                           {section.body}
                         </p>
                       )}
                       {section.image !== undefined && (
-                        <div className="mt-8 aspect-[422/253] w-full max-w-[422px] overflow-hidden bg-neutral-200 lg:ml-[187px]">
+                        <div className="mt-8 aspect-422/253 w-full max-w-105.5 overflow-hidden bg-neutral-200 lg:ml-46.75">
                           <ProjectImage
                             src={section.image}
                             alt={`${project.title} result`}
